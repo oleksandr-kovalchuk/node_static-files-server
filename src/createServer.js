@@ -35,7 +35,9 @@ function createServer() {
       );
     }
 
-    const fileName = pathname.slice(6) || 'index.html';
+    const fileName = pathname.startsWith('/file/')
+      ? pathname.replace('/file/', '')
+      : 'index.html';
 
     handleFileRequest(res, fileName);
   });
